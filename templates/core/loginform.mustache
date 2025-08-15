@@ -190,24 +190,40 @@
         </form>
     </div>
     {{/showlocallogin}}
-    {{#hasidentityproviders}}
-    <div id="theme_boost_union-loginorder-idp" class="theme_boost_union-loginmethod">
+    {{#hascasproviders}}
+    <div id="theme_boost_union-loginorder-cas" class="theme_boost_union-loginmethod">
         <div class="login-divider"></div>
         <div class="login-identityproviders">
-            {{#showidploginintro}}
-            <h2 class="login-heading">{{#str}} potentialidps, auth {{/str}}</h2>
-            {{/showidploginintro}}
-            {{#identityproviders}}
+            <h2 class="login-heading">Connexion CAS</h2>
+            {{#casproviders}}
                 <a class="btn login-identityprovider-btn w-100 btn-secondary" href="{{url}}">
                     {{#iconurl}}
                         <img src="{{iconurl}}" alt="" width="24" height="24"/>
                     {{/iconurl}}
                     {{name}}
                 </a>
-            {{/identityproviders}}
+            {{/casproviders}}
         </div>
     </div>
-    {{/hasidentityproviders}}
+    {{/hascasproviders}}
+    {{#hasotherproviders}}
+    <div id="theme_boost_union-loginorder-idp" class="theme_boost_union-loginmethod">
+        <div class="login-divider"></div>
+        <div class="login-identityproviders">
+            {{#showidploginintro}}
+            <h2 class="login-heading">{{#str}} potentialidps, auth {{/str}}</h2>
+            {{/showidploginintro}}
+            {{#otherproviders}}
+                <a class="btn login-identityprovider-btn w-100 btn-secondary" href="{{url}}">
+                    {{#iconurl}}
+                        <img src="{{iconurl}}" alt="" width="24" height="24"/>
+                    {{/iconurl}}
+                    {{name}}
+                </a>
+            {{/otherproviders}}
+        </div>
+    </div>
+    {{/hasotherproviders}}
     <div id="theme_boost_union-loginorder-firsttimesignup" class="theme_boost_union-loginmethod">
     {{#hasinstructions}}
         <div class="login-divider"></div>

@@ -620,6 +620,22 @@ class core_renderer extends \theme_boost\output\core_renderer {
             $context->showidploginintro = true;
         }
 
+        // Separate CAS from other identity providers.
+        $context->casproviders = [];
+        $context->otherproviders = [];
+        if (!empty($context->identityproviders)) {
+            foreach ($context->identityproviders as $provider) {
+                // In Moodle, the identity provider object has a 'key' property which holds the name of the auth plugin.
+                if (isset($provider->key) && $provider->key === 'cas') {
+                    $context->casproviders[] = $provider;
+                } else {
+                    $context->otherproviders[] = $provider;
+                }
+            }
+        }
+        $context->hascasproviders = !empty($context->casproviders);
+        $context->hasotherproviders = !empty($context->otherproviders);
+
         return $this->render_from_template('core/loginform', $context);
     }
 
